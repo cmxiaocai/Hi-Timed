@@ -1,0 +1,37 @@
+<?php $view=SimpleView::getInstance(); ?>
+<?php include APPLICATION_PATH.'/template/header.html' ?>
+
+
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+    <div class="row">
+        <div class="col-md-12">
+
+<div class="error-container" style="padding-top:50px;">
+    <blockquote class="blockquote-warning" style="width:700px;">
+        <p><h3>失败的操作</h3></p>
+        <p><strong><?php echo $view['exception']->getMessage(); ?></strong></p>
+        <footer><?php echo $view['exception']->getFile(); ?></footer>
+        <p>
+        <span class="label label-default label-form">
+            <a href="#" style="color: #fff;" onclick="$('#exception_info').show();$('.error-container').hide();$('.page-content').height($('body').height());">查看异常详情</a>
+        </span>
+        </p>
+    </blockquote>
+</div>
+
+<div id="exception_info" style="display:none;margin-top:10px;">
+    <pre><?php print_r($view['exception']); ?></pre>
+</div>
+
+        </div>
+    </div>
+</div>
+<!-- END PAGE CONTENT WRAPPER -->
+
+<?php include APPLICATION_PATH.'/template/footer.html' ?>
+<script type="text/javascript">
+$(function(){
+
+});
+</script>

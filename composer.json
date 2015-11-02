@@ -1,0 +1,10 @@
+{
+    "require": {
+        "predis/predis": "dev-master"
+    },
+    "minimum-stability": "stable",
+    "repositories": [
+        {"type": "composer", "url": "http://packagist.phpcomposer.com"},
+        {"packagist": false}
+    ]
+}

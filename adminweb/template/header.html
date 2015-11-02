@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>        
+        <!-- META SECTION -->
+        <title>Timed task Admin</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
+        <!-- END META SECTION -->
+        
+        <!-- CSS INCLUDE -->
+        <link rel="stylesheet" type="text/css" id="theme" href="/static/css/theme-default.css"/>
+        <!-- EOF CSS INCLUDE -->
+    </head>
+    <body class="page-container-boxed">
+        <!-- START PAGE CONTAINER -->
+        <div class="page-container">
+            
+            <!-- START PAGE SIDEBAR -->
+            <div class="page-sidebar">
+                <!-- START X-NAVIGATION -->
+                <ul class="x-navigation">
+                    <li class="xn-logo">
+                        <a href="index.html">Hi Timed</a>
+                        <a href="#" class="x-navigation-control"></a>
+                    </li>
+                    <li class="xn-title">定时任务管理</li>
+                    <li <?php if(SYS_URI=='task_create') echo 'class="active"'; ?> >
+                        <a href="?r=task/create">
+                            <span class="fa fa-pencil-square-o"></span> 
+                            <span class="xn-text">新建任务</span>
+                        </a>
+                    </li>
+                    <li <?php if(SYS_URI=='task_list') echo 'class="active"'; ?>>
+                        <a href="?r=task/list">
+                            <span class="fa fa-th-list"></span> 
+                            <span class="xn-text">任务列表</span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- END X-NAVIGATION -->
+            </div>
+            <!-- END PAGE SIDEBAR -->
+
+            <!-- PAGE CONTENT -->
+            <div class="page-content">
+                
+                <!-- START X-NAVIGATION VERTICAL -->
+                <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
+                    <!-- TOGGLE NAVIGATION -->
+                    <li class="xn-icon-button">
+                        <a href="#" class="x-navigation-minimize">
+                            <span class="fa fa-dedent"></span>
+                        </a>
+                    </li>
+                    <!-- END TOGGLE NAVIGATION -->
+                    <!-- SIGN OUT -->
+                    <li class="xn-icon-button pull-right last">
+                        <a id="btn_logout" href="#" class="mb-control">
+                            <span class="fa fa-sign-out"></span>
+                        </a>
+                    </li> 
+                    <li class="xn-icon-button pull-right last">
+                        <a href="#" class="mb-control" style="width: 150px;text-align: right;padding-right: 0px;">
+                            <span><?php echo $_SESSION['LOGIN_USER']; ?></span>
+                        </a>
+                    </li> 
+                    <!-- END SIGN OUT -->
+                </ul>
+                <!-- END X-NAVIGATION VERTICAL -->

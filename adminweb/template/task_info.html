@@ -1,0 +1,80 @@
+<?php $view=SimpleView::getInstance(); ?>
+<?php include APPLICATION_PATH.'/template/header.html' ?>
+
+<!-- START BREADCRUMB -->
+<ul class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li class="active">任务信息</li>
+</ul>
+<!-- END BREADCRUMB -->
+
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+    <div class="row">
+        <div class="col-md-12">
+
+<div class="panel panel-default">
+    <div class="panel-body panel-body-table" style="padding:10px;">
+        <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td>任务ID</td>
+                <td><?php echo $view['info']['uniqid']; ?></td>
+            </tr>
+            <tr>
+                <td>任务标题</td>
+                <td><?php echo $view['info']['title']; ?></td>
+            </tr>
+            <tr>
+                <td>任务类型</td>
+                <td><?php echo $view['info']['type']; ?></td>
+            </tr>
+            <tr>
+                <td>调用方式</td>
+                <td><?php echo $view['info']['action']; ?></td>
+            </tr>
+            <tr>
+                <td>调用参数</td>
+                <td><pre><?php print_r($view['info']['param']); ?></pre></td>
+            </tr>
+            <tr>
+                <td>执行内容</td>
+                <td><?php echo $view['info']['content']; ?></td>
+            </tr>
+            <tr>
+                <td>执行总次数</td>
+                <td><?php 
+                    if($view['runnum']){
+                        echo $view['runnum'];
+                    }else{
+                        echo '-';
+                    } 
+                ?></td>
+            </tr>
+            <tr>
+                <td>最后执行时间</td>
+                <td><?php 
+                    if($view['lasttime']){
+                        echo date('Y-m-d H:i:s', $view['lasttime']); 
+                    }else{
+                        echo '-';
+                    }
+                ?></td>
+            </tr>
+        </tbody>
+    </table>
+        
+    </div>
+</div>
+
+        </div>
+    </div>
+</div>
+<!-- END PAGE CONTENT WRAPPER -->
+
+<?php include APPLICATION_PATH.'/template/footer.html' ?>
+<script type="text/javascript">
+$(function(){
+
+});
+</script>

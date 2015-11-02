@@ -1,0 +1,296 @@
+<?php $view=SimpleView::getInstance(); ?>
+<?php include APPLICATION_PATH.'/template/header.html' ?>
+
+<!-- START BREADCRUMB -->
+<ul class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li class="active">新建任务</li>
+</ul>
+<!-- END BREADCRUMB -->
+
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+    <div class="row">
+
+        <div class="col-md-12">
+            <form class="form-horizontal">
+            <div class="panel panel-default">
+                <div class="panel-heading ui-draggable-handle">
+                    <h3 class="panel-title">新建定时任务</h3>
+                </div>
+                <div class="panel-body">
+
+        <div id="alert_error" class="form-group" style="display:none;padding-left: 150px;padding-right: 150px;">
+        <div class="alert alert-danger" role="alert" >
+            <strong>创建失败!</strong> 请检查填写的数据是否符合规范.
+        </div>
+        </div>
+
+        <div class="form-group">
+        <label class="col-md-3 col-xs-12 control-label">任务名称:</label>
+        <div class="col-md-6 col-xs-12">
+        <input name="title" type="text" class="form-control" placeholder="给任务起个便于理解的名称" />
+        </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 5px;">
+        <label class="col-md-3 col-xs-12 control-label">执行周期:</label>
+        <div class="col-md-6 col-xs-12">
+        <select name="run_type" class="form-control select">
+        <option value="once">仅执行一次</option>
+        <option value="circle">循环执行</option>
+        <option value="timing">定时执行</option>
+        </select>
+        </div>
+        </div>
+
+        <div id="run_once" class="form-group" data-type="run_type">
+        <label class="col-md-3 col-xs-12 control-label"></label>
+        <div class="col-md-6 col-xs-12">
+        <div class="panel panel-primary" style="margin-bottom:0px;">
+        <div class="panel-body">
+        <div class="col-md-4" style="padding-right:1px;">
+        <div class="input-group">
+        <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+        <input data-key="date" type="text" class="form-control datepicker" value="<?php echo date('Y-m-d'); ?>">
+        </div>
+        </div>
+        <div class="col-md-3" style="padding-left:1px;">
+        <div class="input-group bootstrap-timepicker">
+        <input data-key="time" name type="text" class="form-control timepicker24"/>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+        <div id="run_circle" class="form-group" style="display:none;" data-type="run_type">
+        <label class="col-md-3 col-xs-12 control-label"></label>
+        <div class="col-md-6 col-xs-12">
+        <div class="panel panel-primary" style="margin-bottom:0px;">
+        <div class="panel-body">
+        每隔
+        <select data-key='hour'>
+        <?php 
+        for ($i=0; $i <= 8; $i++) { 
+            echo "<option value={$i}>{$i}小时</option>";
+        }
+        ?>
+        </select>
+        <select data-key='minute'>
+        <?php 
+        for ($i=0; $i <= 60; $i++) { 
+            echo "<option value={$i}>{$i}分钟</option>";
+        }
+        ?>
+        </select>
+        <select data-key='second'>
+        <?php 
+        for ($i=3; $i <= 60; $i++) { 
+            echo "<option value={$i}>{$i}秒</option>";
+        }
+        ?>
+        </select>
+        执行一次
+        </div>
+        </div>
+        </div>
+        </div>
+
+        <div id="run_timing" class="form-group" style="display:none;margin-bottom: 0px;" data-type="run_type">
+        <label class="col-md-3 col-xs-12 control-label"></label>
+        <div class="col-md-6 col-xs-12">
+        <div class="panel panel-default tabs">
+        <ul class="nav nav-tabs" role="tablist">
+        <li><a href="#tab-week" role="tab" data-toggle="tab">每周</a></li>
+        <li class="active"><a href="#tab-first" role="tab" data-toggle="tab">每天</a></li>
+        <li><a href="#tab-second" role="tab" data-toggle="tab">每时</a></li>
+        <li><a href="#tab-third" role="tab" data-toggle="tab">每分</a></li>
+        </ul>
+        <div class="panel-body tab-content">
+        <div class="tab-pane" id="tab-week">
+        每周
+        <select data-key='week'>
+        <?php 
+        foreach (array('一','二','三','四','五','六','日') as $key => $i) {
+            $key++;
+            echo "<option value={$key}>星期{$i}</option>";
+        }
+        ?>
+        </select>
+        <select data-key='hour'>
+        <?php 
+        for ($i=0; $i <= 23; $i++) { 
+            echo "<option value={$i}>{$i}点</option>";
+        }
+        ?>
+        </select>
+        <select data-key='minute'>
+        <?php 
+        for ($i=0; $i <= 59; $i++) { 
+            echo "<option value={$i}>{$i}分</option>";
+        }
+        ?>
+        </select>
+        <select data-key='second'>
+        <?php 
+        for ($i=0; $i <= 59; $i++) { 
+            echo "<option value={$i}>{$i}秒</option>";
+        }
+        ?>
+        </select>
+        执行
+        </div>
+        <div class="tab-pane active" id="tab-first">
+        每天
+        <select data-key='hour'>
+        <?php 
+        for ($i=0; $i <= 23; $i++) { 
+            echo "<option value={$i}>{$i}点</option>";
+        }
+        ?>
+        </select>
+        <select data-key='minute'>
+        <?php 
+        for ($i=0; $i <= 59; $i++) { 
+            echo "<option value={$i}>{$i}分</option>";
+        }
+        ?>
+        </select>
+        <select data-key='second'>
+        <?php 
+        for ($i=0; $i <= 59; $i++) { 
+            echo "<option value={$i}>{$i}秒</option>";
+        }
+        ?>
+        </select>
+        执行
+        </div>
+        <div class="tab-pane" id="tab-second">
+        每小时
+        <select data-key='minute'>
+        <?php 
+        for ($i=0; $i <= 59; $i++) { 
+            echo "<option value={$i}>{$i}分</option>";
+        }
+        ?>
+        </select>
+        <select data-key='second'>
+        <?php 
+        for ($i=0; $i <= 59; $i++) { 
+            echo "<option value={$i}>{$i}秒</option>";
+        }
+        ?>
+        </select>
+        执行
+        </div>
+        <div class="tab-pane" id="tab-third">
+        每分钟大概第
+        <select data-key='second'>
+        <?php 
+        for ($i=0; $i <= 59; $i++) { 
+            echo "<option value={$i}>{$i}秒</option>";
+        }
+        ?>
+        </select>
+        执行
+        (注意:系统不能精确到一定是第n秒开始执行 )
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 5px;">
+        <label class="col-md-3 col-xs-12 control-label">执行方式:</label>
+        <div class="col-md-6 col-xs-12">
+        <select name="run_action" class="form-control select">
+        <option>curl</option>
+        </select>
+        </div>
+        </div>
+
+        <div class="form-group">
+        <label class="col-md-3 col-xs-12 control-label"></label>
+        <div class="col-md-6 col-xs-12">
+        <textarea name="content" class="form-control" rows="3" placeholder="请输入触发任务时所调用的url访问地址"></textarea>
+        <span class="help-block">示例:<mark>http://domain.com/service/taskrun</mark></span>
+        </div>
+        </div>
+
+                </div>
+                <div class="panel-footer" style="text-align: center;">
+                    <button name="create" type="button" class="btn btn-info">创建</button>
+                    <a href="?r=task/list" class="btn btn-default">取消</a>
+                </div>
+            </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+<!-- END PAGE CONTENT WRAPPER -->
+
+
+<?php include APPLICATION_PATH.'/template/footer.html' ?>
+<script type="text/javascript">
+    $(function(){
+        $('select[name=run_type]').change(function(){
+            var val = $(this).val();
+            $('.form-group[data-type=run_type]').hide();
+            $('#run_'+val).show();
+        });
+        $('button[name=create]').click(function(){
+            $(this).attr('disabled',true);
+            $(this).html('创建中...');
+            var postdata = get_postdata();
+            if( !check_postdata(postdata) ){
+                $('#alert_error').show();
+                $(this).attr('disabled', false);
+                $(this).html('创建');
+                return false;
+            }
+            sendRequest(postdata);
+            $('#alert_error').hide();
+            return false;
+        });
+        var get_postdata = function(){
+            var postdata = {
+                title  : $('input[name=title]').val(),
+                type   : $('select[name=run_type]').val(),
+                action : $('select[name=run_action]').val(),
+                content: $('textarea[name=content]').val(),
+                param  : {}
+            };
+            if(postdata.type=='once'){
+                $.each($('#run_'+postdata.type+' input[data-key]:visible'), function(key, val){
+                    var pkey = $(val).attr('data-key');
+                    postdata.param[pkey] = $(val).val();
+                });
+            }else{
+                
+                $.each($('#run_'+postdata.type+' select[data-key]:visible'), function(key, val){
+                    var pkey = $(val).attr('data-key');
+                    postdata.param[pkey] = $(val).val();
+                });
+            }
+            return postdata;
+        }
+        var check_postdata = function(postdata){
+            if( postdata.title.length <= 5 ){
+                return false;
+            }
+            if( postdata.content.length <= 10 ){
+                return false;
+            }
+            return true;
+        }
+        var sendRequest = function(postdata){
+            $.post('?r=task/create', postdata, function(result){
+                document.location.href='?r=task/list';
+            }, 'json');
+            $('button[name=create]').attr('disabled', false);
+        }
+    });
+</script>

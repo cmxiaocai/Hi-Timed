@@ -1,0 +1,40 @@
+<?php $view=SimpleView::getInstance(); ?>
+<?php include APPLICATION_PATH.'/template/header.html' ?>
+
+<!-- START BREADCRUMB -->
+<ul class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="?r=task_list">任务列表</a></li>
+    <li><a href="?r=task_log&id=<?php echo $view['info']['uniqid'];?>">查看日志:<?php echo $view['info']['title'];?></a></li>
+    <li class="active"><?php echo $view['date']; ?>.log</li>
+</ul>
+<!-- END BREADCRUMB -->
+
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panel panel-default">
+                <div class="panel-heading ui-draggable-handle">
+                    <h3 class="panel-title">
+                        ID:<?php echo $view['info']['uniqid'];?>
+                    </h3>
+                </div>
+                <div class="panel-body panel-body-table" style="padding:50px;padding: 50px;
+              padding-top: 20px;">
+                    <div class="alert alert-info push-down-20">
+                        <span style="color: #FFF500;">注意!</span> 
+                        日志存储在客户端的<span style="color: #FFF500;"><?php echo $view['log_dir']; ?></span>目录下，若部署多台服务器请确保此目录存储共享。
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                    </div>
+                    <pre><?php echo $view['content'];?></pre>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- END PAGE CONTENT WRAPPER -->
+
+<?php include APPLICATION_PATH.'/template/footer.html' ?>

@@ -1,0 +1,101 @@
+<?php $view=SimpleView::getInstance(); ?>
+<?php include APPLICATION_PATH.'/template/header.html' ?>
+
+<!-- START BREADCRUMB -->
+<ul class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li class="active">任务列表</li>
+</ul>
+<!-- END BREADCRUMB -->
+
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+    <div class="row">
+        <div class="col-md-12">
+
+<div class="panel panel-default">
+    <div class="panel-heading ui-draggable-handle">
+        <h3 class="panel-title">已在执行中的任务列表</h3>
+    </div>
+    <div class="panel-body panel-body-table">
+    <table class="table table-bordered table-striped table-actions">
+        <thead>
+            <tr>
+                <th width="100">任务ID</th>
+                <th>任务名称</th>
+                <th width="80">类型</th>
+                <th width="60">调用</th>
+                <th width="60">状态</th>
+                <th width="140">下次运行时间</th>
+                <th width="100">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php 
+                foreach ($view['tasks'] as $key => $value) { 
+                    if( !isset($value['uniqid']) ){
+                        continue;
+                    }
+            ?>
+            <tr id="trow_3">
+                <td class="text-center"><?php echo $value['uniqid']; ?></td>
+                <td><?php echo $value['title']; ?></td>
+                <td><?php echo $value['type']; ?></td>
+                <td><?php echo $value['action']; ?></td>
+                <td>
+                    <?php
+                        if( $value['last_run_time']+60 < time() ){
+                            echo '<span class="label label-default">End</span>';
+                        }else{
+                            echo '<span class="label label-info">Queue</span>';
+                        }
+                    ?>
+                </td>
+                <td><?php echo date('Y-m-d H:i:s', $value['last_run_time']); ?></td>
+                <td>
+                    <a href="?r=task/info&id=<?php echo $value['uniqid']; ?>">Info</a>,
+                    <a class="del_confirm" data-title="<?php echo $value['title']; ?>" href="?r=task/delete&id=<?php echo $value['uniqid']; ?>">Del</a>,
+                    <a href="?r=task/log&id=<?php echo $value['uniqid']; ?>">Log</a>
+                </td>
+            </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+    </div>
+</div>
+
+        </div>
+    </div>
+</div>
+<!-- END PAGE CONTENT WRAPPER -->
+
+<!-- default -->
+<div  class="message-box animated fadeIn" id="message-box-default">
+    <div class="mb-container">
+        <div class="mb-middle">
+            <div class="mb-title"><span class="fa fa-warning"></span> 删除确认</div>
+            <div class="mb-content">
+                <p>删除后“<strong id="message-title"></strong>”将不再执行，历史日志会被保存至“历史任务”中。</p>
+            </div>
+            <div class="mb-footer">
+                <a class="btn btn-default btn-lg pull-right mb-control-close" href="#" onclick="$('#message-box-default').hide();">取消</a>
+                <a id="delete_src" class="btn btn-danger btn-lg pull-right" href="#" style="margin-right: 10px;">删除</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end default -->
+
+<?php include APPLICATION_PATH.'/template/footer.html' ?>
+<script type="text/javascript">
+$(function(){
+    $('.del_confirm').click(function(){
+        var href  = $(this).attr('href');
+        var title = $(this).attr('data-title');
+        $('#delete_src').attr('href', href);
+        $('#message-title').html(title);
+        $('#message-box-default').show();
+        return false;
+    });
+});
+</script>
