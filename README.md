@@ -10,11 +10,17 @@
 * 输出的日志不统一，并且无法得知是否执行成功？
 * 存在单点的风险，但又不得不单点执行crontab
 
-Hi Timed的目标是为自身没有基础建设支撑的团队提供一套便于二次开发的低成本的定时任务 调度与管理系统。系统本身是基于swoole实现，并且自身不处理业务逻辑只负责任务的调度和管理，每个任务可设置多样化的周期执行时间和调度方式异步运行。
+Hi Timed的目标是为自身没有基础建设支撑的团队提供一套便于二次开发的低成本的定时任务调度与管理系统。系统本身是基于swoole实现，并且自身不处理业务逻辑只负责任务的调度和管理，每个任务可设置多样化的周期执行时间和调度方式异步运行。
 
+![](http://www.xiaocai.name/uploads/201511/02.jpg)
 
+![](http://www.xiaocai.name/uploads/201511/01.jpg)
+
+![](http://www.xiaocai.name/uploads/201511/03.jpg)
 
 github: [https://github.com/cmxiaocai/Hi-Timed](https://github.com/cmxiaocai/Hi-Timed "https://github.com/cmxiaocai/Hi-Timed")
+
+blog: [http://www.xiaocai.name/about/](http://www.xiaocai.name/about/ "http://www.xiaocai.name/about/")
 
 ## 目录结构
 
