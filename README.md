@@ -12,15 +12,12 @@
 
 Hi Timed的目标是为自身没有基础建设支撑的团队提供一套便于二次开发的低成本的定时任务调度与管理系统。系统本身是基于swoole实现，并且自身不处理业务逻辑只负责任务的调度和管理，每个任务可设置多样化的周期执行时间和调度方式异步运行。
 
-<<<<<<< HEAD
-=======
 ![](http://www.xiaocai.name/uploads/201511/02.jpg)
 
 ![](http://www.xiaocai.name/uploads/201511/01.jpg)
 
 ![](http://www.xiaocai.name/uploads/201511/03.jpg)
 
->>>>>>> c991ff67b31c1dab96dcf441417b97a82e377781
 github: [https://github.com/cmxiaocai/Hi-Timed](https://github.com/cmxiaocai/Hi-Timed "https://github.com/cmxiaocai/Hi-Timed")
 
 blog: [http://www.xiaocai.name/about/](http://www.xiaocai.name/about/ "http://www.xiaocai.name/about/")
