@@ -12,8 +12,6 @@
 
 Hi Timed的目标是为自身没有基础建设支撑的团队提供一套便于二次开发的低成本的定时任务 调度与管理系统。系统本身是基于swoole实现，并且自身不处理业务逻辑只负责任务的调度和管理，每个任务可设置多样化的周期执行时间和调度方式异步运行。
 
-
-
 github: [https://github.com/cmxiaocai/Hi-Timed](https://github.com/cmxiaocai/Hi-Timed "https://github.com/cmxiaocai/Hi-Timed")
 
 ## 目录结构
@@ -77,9 +75,16 @@ github: [https://github.com/cmxiaocai/Hi-Timed](https://github.com/cmxiaocai/Hi-
 **4.部署crontab检测脚本:**
 
 > 将script/heartbeat.sh脚本添加至crontab中，用于检测守护进程是否中断，若中断则重启守护进程
-> 注意: 需要确保heartbeat.sh脚本中RONROOT、COMMAND连个参数路径正确。
+> 注意: 需要确保heartbeat.sh脚本中COMMAND参数路径正确(默认是/usr/local/php/bin/php)。
 
     */1 * * * * root /bin/sh /{your_directory}/script/heartbeat.sh >> /tmp/crontab_run.log
+
+> heartbeat.sh脚本使用说明
+
+    /bin/sh /{your_directory}/script/heartbeat.sh        #用于自动检测守护进程状态
+    /bin/sh /{your_directory}/script/heartbeat.sh start  #启动一条新守护进程
+    /bin/sh /{your_directory}/script/heartbeat.sh stop   #终止守护进程
+
 
 **5.访问管理后台:**
 

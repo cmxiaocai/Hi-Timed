@@ -6,15 +6,15 @@
 # 每分钟执行一次，用于检测swoole_timer进程是否存在，并确保始终只有一条进程在运行。
 
 
+DIRNAME=$(cd `dirname $0`; pwd)
 CURRENT_DATE=`date "+%Y%m%d %H:%M:%S"`
-
-RONROOT='/data/www/script/cmd.php'
+RONROOT=$DIRNAME'/cmd.php'
 COMMAND='/usr/local/php/bin/php'
 
 TODAYLOG="/tmp/crontab_last_time.log"
 
 function fun_stop {
-	RESULT=`ps -A -o stat,ppid,pid,cmd | grep -e 'cmd.php' | awk '{print $3}' | xargs kill -9`&
+	RESULT=`ps -ef | grep -e 'cmd.php' | grep 'daemon' | awk '{print $2}' | xargs kill -9`&
 	sleep 2
 	echo 'stop success'
 }
@@ -22,12 +22,13 @@ function fun_stop {
 function fun_start {
 	sleep 2
 	ulimit -c unlimited
+	echo "$COMMAND $RONROOT daemon"
 	RESULT=`$COMMAND $RONROOT daemon `&
 	echo 'start success'
 }
 
 #PROCESS_NUM=`ps -A -o stat,ppid,pid,cmd | grep 'cmd.php' | grep -v 'grep' | wc -l`
-PROCESS_NUM=`ps -A -o stat,ppid,pid,cmd | grep 'cmd.php' | grep 'daemon' | wc -l`
+PROCESS_NUM=`ps -ef | grep 'cmd.php' | grep 'daemon' | wc -l`
 
 echo "--START--"
 echo "DATE:$CURRENT_DATE"
@@ -70,7 +71,7 @@ else
 		fun_start
 	fi
 
-	PROCESS_NUM=`ps -A -o stat,ppid,pid,cmd | grep 'cmd.php' | grep 'daemon' | wc -l`
+	PROCESS_NUM=`ps -ef | grep 'cmd.php' | grep 'daemon' | wc -l`
 	echo "NUM:$PROCESS_NUM"
 
 	echo "${CURRENT_DATE}"> ${TODAYLOG}
