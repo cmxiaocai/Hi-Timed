@@ -1,18 +1,29 @@
-## 项目说明
+# Hi-Timed
 
 当你拥有足够复杂的业务系统时往往需要在上百台服务器上部署不同的crontab任务，那么在接下来将会给你带来许许多多的问题：
 
-*忘记了crontab部署在哪台服务器上？
-*不知道线上跑了哪些任务，都做些什么，负责人是谁？
-*不能确定任务有没有在运行?
-*没有足够的权限查看或部署crontab任务!
-*忘记配置开启启动，宕机后未执行任务！
-*输出的日志不统一，并且无法得知是否执行成功？
-*存在单点的风险，但又不得不单点执行crontab
+* 忘记了crontab部署在哪台服务器上？
+* 不知道线上跑了哪些任务，都做些什么，负责人是谁？
+* 不能确定任务有没有在运行?
+* 没有足够的权限查看或部署crontab任务!
+* 忘记配置开启启动，宕机后未执行任务！
+* 输出的日志不统一，并且无法得知是否执行成功？
+* 存在单点的风险，但又不得不单点执行crontab
 
-Hi Timed的目标是为自身没有基础建设支撑的团队提供一套便于二次开发的低成本的定时任务 调度与管理系统。系统本身是基于swoole实现，并且自身不处理业务逻辑只负责任务的调度和管理，每个任务可设置多样化的周期执行时间和调度方式异步运行。
+Hi Timed的目标是为自身没有基础建设支撑的团队提供一套便于二次开发的低成本的定时任务调度与管理系统。系统本身是基于swoole实现，并且自身不处理业务逻辑只负责任务的调度和管理，每个任务可设置多样化的周期执行时间和调度方式异步运行。
 
+<<<<<<< HEAD
+=======
+![](http://www.xiaocai.name/uploads/201511/02.jpg)
+
+![](http://www.xiaocai.name/uploads/201511/01.jpg)
+
+![](http://www.xiaocai.name/uploads/201511/03.jpg)
+
+>>>>>>> c991ff67b31c1dab96dcf441417b97a82e377781
 github: [https://github.com/cmxiaocai/Hi-Timed](https://github.com/cmxiaocai/Hi-Timed "https://github.com/cmxiaocai/Hi-Timed")
+
+blog: [http://www.xiaocai.name/about/](http://www.xiaocai.name/about/ "http://www.xiaocai.name/about/")
 
 ## 目录结构
 
